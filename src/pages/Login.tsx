@@ -1,23 +1,34 @@
 import {useState} from "react";
+import { motion,AnimatePresence } from "motion/react";
 
 const Login = () => {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
 
     return (
-        <div
+        <motion.div
             className={`bg-[url(/Assets/Images/login-background.jpg)] bg-cover bg-center w-full min-h-screen relative`}>
             <nav className={`bg-gradient-to-b from-black h-30 overflow-hidden px-5 lg:px-16`}>
-                <img src="/Assets/Images/netflix-logo-text-full.svg"
+                <motion.img initial={{translateY:-30}} animate={{translateY:0}} transition={{duration:0.4}} src="/Assets/Images/netflix-logo-text-full.svg"
                      className={`h-full lg:scale-130 -translate-y-[15px]`} alt=""/>
             </nav>
-            <form
-                className={`absolute min-h-[50vh] w-full  max-w-xs sm:max-w-sm md:w-3/4 md:max-w-md lg:w-[25%] lg:max-w-lg  bg-black/80 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-xl py-4 px-6 flex flex-col gap-8 items-center justify-center pb-10`}
+            <AnimatePresence >
+            <motion.form layout key={isSignUp?'sign-up':'login'} initial={{translateY:20,opacity:0.1}} animate={{translateY:0,opacity:1}} transition={{duration: 0.3}}
+                className={`absolute min-h-[50vh] w-full  max-w-xs sm:max-w-sm md:w-3/4 md:max-w-md lg:w-[25%] lg:max-w-lg  bg-black/80 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-xl py-4 px-6 flex flex-col gap-6 items-center justify-center pb-10`}
                 action="">
+
                 <h1 className={`text-3xl text-center netflixFont font-black tracking-tight text-white mb-4`}>{isSignUp ? 'Sign Up' : "Login"}</h1>
-                {isSignUp && <input type="text" placeholder={`Enter Name`}
-                                    className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>}
-                {isSignUp && <input type="text" placeholder={`Enter email`}
-                                    className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>}
+                <AnimatePresence key={isSignUp?'signup-fields':'login-fields'}  >
+                    <motion.div key={`header-signup-input`}  initial={{ opacity: 0, height: 0 }}
+                                 animate={{ opacity: 1, height: "auto" }}
+                                 exit={{ opacity: 0, height: 0 }}
+                                 transition={{ duration: 0.25 }}
+                        className={`flex flex-col gap-6 w-full`}>
+                        {isSignUp && <input key={`input-name`} type="text" placeholder={`Enter Name`}
+                                            className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>}
+                        {isSignUp && <input key={`input-email`} type="text" placeholder={`Enter email`}
+                                            className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>}
+                    </motion.div>
+                </AnimatePresence>
                 <input type="text" placeholder={`Enter username`}
                        className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>
                 <input type="text" placeholder={`Enter Password`}
@@ -34,9 +45,9 @@ const Login = () => {
                     </p>
 
                 </div>
-
-            </form>
-        </div>
+            </motion.form>
+                </AnimatePresence>
+        </motion.div>
     );
 }
 export default Login;
