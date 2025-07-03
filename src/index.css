@@ -1,0 +1,61 @@
+@import "tailwindcss";
+/* Thin (100) */
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("/Assets/Fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light (300) */
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("/Assets/Fonts/KFOmCnqEu92Fr1Mu4mxK.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Regular (400) */
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("/Assets/Fonts/NetflixSans_W_Rg.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Medium (500) */
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("/Assets/Fonts/NetflixSans_W_Md.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Bold (700) */
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("/Assets/Fonts/NetflixSans_W_Bd.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Variable-style (optional full-range weights) */
+@font-face {
+    font-family: "Netflix Sans Variable";
+    src: url("/Assets/Fonts/netflix-sans-core-variable-full.woff2")
+    format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+.netflixFont{
+    font-family: 'Netflix Sans';
+}
+.netflixFontVariable{
+    font-family: 'Netflix Sans Variable';
+}
