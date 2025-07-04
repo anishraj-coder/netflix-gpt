@@ -1,6 +1,7 @@
 import {useState} from "react";
 import { motion,AnimatePresence } from "motion/react";
 import { type SubmitHandler, useForm} from "react-hook-form";
+import {login, signUp} from "../utils/SigninAndLogic.ts";
 export type formSchema={
     name:string,
     email:string,
@@ -16,22 +17,62 @@ const Login = () => {
             password:'',
             confirmPassword:'',
         },
-        mode:'onTouched'
+        mode:'onChange'
     })
     const onSubmit:SubmitHandler<formSchema>= async (data:formSchema)=>{
         try{
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            console.log(data);
-            throw new Error("Something went wrong");
-        }catch(e){
-            let message:string='Something went wrong!!!'
-           if(e instanceof Error) {
-                message=e.message;
-           }
-            setError('root',{
-                type:'manual',
-                message:message,
-            })
+            if(isSignUp){
+                const user=await signUp(data.email,data.password)
+                console.log(user);
+            }else{
+                const user=await  login(data.email,data.password)
+                console.log(user);
+            }
+        }catch (e) {
+            let message: string = 'Something went wrong!';
+
+            if (e instanceof Error && e.message) {
+                const msg = e.message.toLowerCase();
+
+                // Sign up specific errors
+                if (isSignUp) {
+                    if (msg.includes('email-already-in-use')) {
+                        message = 'This email is already registered. Try logging in instead.';
+                    } else if (msg.includes('invalid-email')) {
+                        message = 'Please enter a valid email address.';
+                    } else if (msg.includes('weak-password')) {
+                        message = 'Password should be at least 6 characters long.';
+                    }
+                }
+                // Login specific errors
+                else {
+                    if (msg.includes('user-not-found')) {
+                        message = 'No account found with this email. Please sign up first.';
+                    } else if (msg.includes('wrong-password') || msg.includes('invalid-credential')) {
+                        message = 'Incorrect email or password.';
+                    } else if (msg.includes('user-disabled')) {
+                        message = 'This account has been disabled. ';
+                    } else if (msg.includes('invalid-email')) {
+                        message = 'Please enter a valid email address.';
+                    } else if (msg.includes('too-many-requests')) {
+                        message = 'Too many failed attempts. ';
+                    }
+                }
+
+                // Common errors for both signup and login
+                if (msg.includes('network')) {
+                    message = 'Network error. Please check your connection and try again.';
+                } else if (msg.includes('internal-error')) {
+                    message = 'An internal error occurred. ';
+                } else if (msg.includes('operation-not-allowed')) {
+                    message = 'This operation is not allowed. ';
+                }
+            }
+
+            setError('root', {
+                type: 'manual',
+                message: message,
+            });
         }
     }
 
