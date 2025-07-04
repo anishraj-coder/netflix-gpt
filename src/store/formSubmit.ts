@@ -1,14 +1,15 @@
 import type {formSchema} from "../pages/Login.tsx";
-import {signUp,login} from "../utils/SigninAndLogic.ts";
+import {signUp,login } from "../utils/SigninAndLogic.ts";
 
 export  const formSubmit= async (data:formSchema,isSignup:boolean)=>{
     try{
         let user=null;
         if(isSignup){
-            user=await signUp(data.email,data.password);
+            user=await signUp(data.email,data.password,data.name);
         }else{
             user=await  login(data.email,data.password);
         }
+
         return(user);
     }catch (e) {
         let message: string = 'Something went wrong!';

@@ -43,7 +43,7 @@ const Login = () => {
             </nav>
             <AnimatePresence >
             <motion.form onSubmit={handleSubmit(onSubmit)} layout key={isSignUp?'sign-up':'login'} initial={{translateY:20,opacity:0.1}} animate={{translateY:0,opacity:1}} transition={{duration: 0.3}}
-                className={`absolute min-h-[50vh] w-full  max-w-xs sm:max-w-sm md:w-3/4 md:max-w-md lg:w-[25%] lg:max-w-lg  bg-black/80 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-xl py-4 px-6 flex flex-col gap-3 items-center justify-center pb-10`}
+                className={`absolute min-h-[50vh] w-full  max-w-xs sm:max-w-sm md:w-2/4 md:max-w-md lg:w-[28%] lg:max-w-lg  bg-black/80 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-xl py-4 px-6 flex flex-col gap-3 items-center justify-center pb-10`}
                 action="">
 
                 <h1 className={`text-3xl text-center netflixFont font-black tracking-tight text-white mb-4`}>{errors.root?errors.root.message:isSignUp ? 'Sign Up' : "Login"}</h1>
@@ -84,7 +84,7 @@ const Login = () => {
                                 return 'Password must include at least one number';
                             }
                             return true;
-                        }})} type="text" placeholder={`Enter Password`}
+                        }})} type="password" placeholder={`Enter Password`}
                            className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>
                     <span className={`h-3`}><p className={`text-[12px] font-light netflixFontVariable text-red-500`}>{errors.password&&errors.password.message}</p></span>
                 </div>
@@ -105,7 +105,7 @@ const Login = () => {
                                 return 'Password must include at least one number';
                             }
                             return true;
-                        }})} type="text" placeholder={`Confirm Password`}
+                        }})} type="password" placeholder={`Confirm Password`}
                            className={`w-full text-xl bg-white/10 text-white placeholder:text-white/60 netflixFontVariable placeholder:text-sm px-4 py-2 rounded-sm font-light outline-none focus:ring-1 ring-white/60`}/>
                     <span className={`h-3`}><p className={`text-[12px] font-light netflixFontVariable text-red-500`}>{errors.confirmPassword&&errors.confirmPassword.message}</p></span>
                 </div>}
@@ -113,9 +113,10 @@ const Login = () => {
                     <button onClick={()=>{
                         setTimeout(()=>trigger(),0);
                     }}
+                            disabled={isSubmitting}
                         className={`text-sm mx-auto netflixFontVariable font-medium relative  text-white w-full bg-[#db0000] text-center py-2 rounded-md`}>
                         <span
-                            className={`absolute -top-[6px] left-1/2 bg-white/60 h-[0.5px] w-[96%] -translate-y-1/2 -translate-x-1/2`}></span> {isSubmitting?'Submitting':isSignUp ? 'Sign Up' : "Login"}
+                            className={`absolute -top-[6px] left-1/2 bg-white/60 h-[0.5px] w-[96%] -translate-y-1/2 -translate-x-1/2 disabled:text-zinc-400`}></span> {isSubmitting?'Submitting':isSignUp ? 'Sign Up' : "Login"}
                     </button>
                     <p className={`text-white netflixFontVariable text-sm mt-3 `}>{isSignUp ? 'Already registered?' : 'New to Netflix?'}
                         <span onClick={() => setIsSignUp(prev => !prev)}
