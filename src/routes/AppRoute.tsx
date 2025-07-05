@@ -6,7 +6,7 @@ import ErrorPage from "../pages/ErrorPage.tsx";
 
 export const AppRoute=createBrowserRouter([{path:'/',element:<Body/>,
     children:[
-        {path:'/',element:<Login/>},
+        {path:'/login',element:<Login/>},
         {path:'/browse',element:<Browse/>}
     ]
 },{path:'/error',element:<ErrorPage/>}]);
