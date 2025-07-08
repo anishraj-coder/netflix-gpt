@@ -26,7 +26,7 @@ const Header=()=>{
                 <img className={`object-contain object-center ring-2 ring-white/30 rounded-[2px]`} src={profileImage} alt=""/>
                 <h1 ref={ref} className={`font-[poppins] font-light text-md text-white relative cursor-pointer select-none`}>{userName?userName:"Someone"}
                    <AnimatePresence>
-                       {isHover&& <motion.span  initial={{height:"0px",translateY:-20,opacity:0}} animate={{height:"85px",translateY:0,opacity:1}} exit={{height:'0px',opacity:0,translateY:-20}} transition={{duration:0.5}}  className={`dropdown-arrow flex flex-col w-40 bg-zinc-600 rounded-sm absolute top-10 right-[-100px] -translate-x-1/2 px-3 py-4`}>
+                       {isHover&& <motion.span  initial={{height:"0px",translateY:-20,opacity:0}} animate={{height:"85px",translateY:0,opacity:1}} exit={{height:'0px',opacity:0,translateY:-20}} transition={{duration:0.5}}  className={`dropdown-arrow flex flex-col items-center justify-center w-40 bg-zinc-600 rounded-sm absolute top-10 right-[-100px] -translate-x-1/2 px-3 py-4 overflow-hidden`}>
                            <h2 className={`font-[poppins] font-medium text-center text-sm mb-1`}>User:&nbsp;{userName||'Someone'}</h2>
                            <span className={`w-full bg-white h-[0.5px] `}></span>
                            <button onClick={signOutHandler} className={`text-sm mt-2 text-center cursor-pointer `}>Sign Out</button>

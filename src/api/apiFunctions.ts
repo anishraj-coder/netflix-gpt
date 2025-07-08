@@ -1,5 +1,6 @@
 import {QueryClient} from "@tanstack/react-query";
 import axios from "axios";
+import type {MovieVideosResponse} from "../Hooks/useTopRated.ts";
 
 
 export interface MovieChange {
@@ -46,3 +47,7 @@ export const fetchMovies= async( page:number=1)=>{
     const res=await axiosApi.get<MovieChangesResponse>(`movie/changes`,{params:{page:page}});
     return res.data.results;
 }
+export const fetchMovieVideos = async (movieId: number) => {
+    const res = await axiosApi.get<MovieVideosResponse>(`movie/${movieId}/videos`);
+    return res.data;
+};
