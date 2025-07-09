@@ -6,10 +6,15 @@ import {useAppStore} from "../store/appStore.ts";
 import {useShallow} from "zustand/react/shallow";
 import {useHoverIntent} from "react-use-hoverintent";
 import {logo, profileImage} from "../utils/constant.ts";
+import { FaSearch } from "react-icons/fa";
+import {useSearchStore} from "../store/searchStore.ts";
+import { MdArrowBackIos } from "react-icons/md";
+
 
 const Header=()=>{
     const [isHover,ref]=useHoverIntent<HTMLHeadingElement>({timeout:300,sensitivity:3,interval:10});
     const {userName}=useAppStore(useShallow(state=>({userName:state.user?.displayName})));
+    const {search,toggle}=useSearchStore(useShallow(state => ({search:state.search,toggle:state.toggle})));
     const navigate=useNavigate();
     const signOutHandler=async ()=>{
         try{
@@ -18,10 +23,18 @@ const Header=()=>{
             navigate('/error');
         }
     }
+    const handleSearch=()=>{
+        toggle();
+        if(search) navigate('/browse');
+        else navigate('/search');
+    }
 
     return (
         <div className={`h-20 lg:h-28 bg-gradient-to-b absolute top-0 left-0 w-full px-10 py-2 z-20 from-black from-15% flex justify-between items-center `}>
             <motion.img initial={{translateY:-100,opacity:0}} animate={{opacity:1,translateY:0}} transition={{duration:0.6}} src={logo} className={`h-[40%] lg:h-[50%]`} alt=""/>
+            <motion.button initial={{y:-100}} animate={{y:0}} transition={{duration:0.8, delay:0.1}} onClick={handleSearch}
+                           whileTap={{scale:105}}
+                           className={`text-white text-3xl h-fit `}>{!search?<FaSearch/>:<MdArrowBackIos/>}</motion.button>
             <motion.div className={`login-wrapper flex items-center justify-center gap-5 relative`}>
                 <img className={`object-contain object-center ring-2 ring-white/30 rounded-[2px]`} src={profileImage} alt=""/>
                 <h1 ref={ref} className={`font-[poppins] font-light text-md text-white relative cursor-pointer select-none`}>{userName?userName:"Someone"}
