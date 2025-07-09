@@ -8,9 +8,8 @@ import { FaStar } from "react-icons/fa6";
 
 const Card = ({data}: { data: Movie }) => {
     const [isHovering,ref]=useHoverIntent<HTMLDivElement>({timeout:200});
-    console.log(data);
     return (
-        <motion.div ref={ref}
+        <motion.div key={data.id} ref={ref}
             className={`
                 h-44 w-72 bg-black rounded-sm shrink-0 overflow-hidden  group hover:z-20 shadow-md ring-2 ring-zinc-800 shadow-zinc-900 relative first:origin-left last:origin-right`}
             whileHover={{

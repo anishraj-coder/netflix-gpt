@@ -1,4 +1,4 @@
-// hooks/useTopRated.ts
+
 import { useQuery } from '@tanstack/react-query';
 import {fetchMovieVideos, fetchTopRated} from '../api/apiFunctions';
 import type { Movie } from '../api/apiFunctions';
@@ -12,7 +12,7 @@ export interface Video {
     size: number;
     type: string;
     official: boolean;
-    published_at: string; // ISO 8601 date string
+    published_at: string;
     id: string;
 }
 
@@ -33,5 +33,7 @@ export const useHeroTrailer=(id:number)=>{
         queryKey:['hero-videos',id],
         queryFn:()=>fetchMovieVideos(id),
         enabled:!!id&&id>0,
+        staleTime: 20*60*1000,
+        gcTime:5*60*1000,
     });
 }

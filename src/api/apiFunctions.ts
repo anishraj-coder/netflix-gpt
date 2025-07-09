@@ -51,3 +51,11 @@ export const fetchMovieVideos = async (movieId: number) => {
     const res = await axiosApi.get<MovieVideosResponse>(`movie/${movieId}/videos`);
     return res.data;
 };
+export const fetchNowPlaying= async()=>{
+    const res=await axiosApi.get<Movie[]>(`movie/now_playing`);
+    return res.data.results;
+}
+export const fetchPopularMovies=async()=>{
+    const res=await axiosApi.get<Movie[]>(`movie/popular`);
+    return res.data.results;
+}
