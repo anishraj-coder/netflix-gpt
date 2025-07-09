@@ -186,8 +186,7 @@
     src: url('/Assets/Fonts/Poppins-BlackItalic.woff2') format('woff2');
 }
 
-/* 2. Set the font as a theme variable */
-@import "tailwindcss";
+
 
 @theme {
     --font-poppins: 'Poppins', sans-serif;
@@ -201,4 +200,12 @@
     border-width: 6px;
     border-style: solid;
     border-color: transparent transparent #27272a transparent;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

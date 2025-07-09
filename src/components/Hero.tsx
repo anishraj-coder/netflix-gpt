@@ -45,7 +45,7 @@ const Hero = () => {
                         className={`w-full h-full object-cover object-center `} alt=""/>}
                     <motion.div initial={{translateX: -400, opacity: 0.2}} animate={{translateX: 0, opacity: 1}}
                                 transition={{duration: 0.6, delay: 0.8}}
-                                className={`bottom-wrapper z-12 absolute bottom-10 md:bottom-20 lg:bottom-40 left-7`}>
+                                className={`bottom-wrapper scale-80 origin-left md:scale-100 z-12 absolute bottom-32 md:bottom-40 lg:bottom-56 left-7`}>
                         <h1 className={`font-[poppins] font-medium text-2xl text-white mb-4 `}>{hero.original_title}</h1>
                         <div className={`flex items-center gap-4`}>
                             <button
