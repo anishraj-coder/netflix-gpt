@@ -2,6 +2,7 @@ import {loading_spinner} from "../utils/constant.ts";
 import {motion} from "motion/react";
 import {IoMdPlay, IoMdInformationCircleOutline} from "react-icons/io";
 import {useHeroTrailer, useTopRated} from "../Hooks/useTopRated.ts";
+import {NavLink} from "react-router-dom";
 
 const Hero = () => {
     const {data, isLoading, error} = useTopRated();
@@ -40,14 +41,14 @@ const Hero = () => {
                                 className={`bottom-wrapper scale-80 origin-left md:scale-100 z-12 absolute bottom-32 md:bottom-40 lg:bottom-56 left-7`}>
                         <h1 className={`font-[poppins] font-medium text-2xl text-white mb-4 `}>{hero.original_title}</h1>
                         <div className={`flex items-center gap-4`}>
-                            <button
-                                className={`bg-white px-6 md:px-8 py-2 flex items-center gap-2 rounded-xs font-[poppins] text-md lg:text-xl font-semibold`}>
+                            <button onClick={()=>window.open(`https://youtube.com/watch?v=${trailer?.key}`)}
+                                className={`bg-white px-6 md:px-8 py-2 flex items-center gap-2 rounded-xs font-[poppins] text-md lg:text-xl font-semibold cursor-pointer`}>
                                 <IoMdPlay className={'text-3xl'}/> Play
                             </button>
-                            <button
-                                className={`bg-white/30 px-3 md:px-4 py-2 flex items-center gap-2 rounded-xs font-[poppins] font-medium text-white`}>
+                            <NavLink to={`/movie/${hero?.id}`}
+                                className={`bg-white/30 px-3 md:px-4 py-2 flex items-center gap-2 rounded-xs font-[poppins] font-medium text-white cursor-pointer`}>
                                 <IoMdInformationCircleOutline className={`text-3xl`}/>More Info
-                            </button>
+                            </NavLink>
                         </div>
                     </motion.div>
                 </div>

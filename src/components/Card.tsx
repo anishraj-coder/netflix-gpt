@@ -16,7 +16,7 @@ const Card = ({data}: { data: Movie }) => {
     return (
         <motion.div key={data.id} ref={ref} onClick={handleClick}
             className={`
-                h-44 w-72 bg-black rounded-sm shrink-0 overflow-hidden  group hover:z-20 shadow-md ring-2 ring-zinc-800 shadow-zinc-900 relative first:origin-left last:origin-right`}
+                h-44 w-72 bg-black rounded-sm shrink-0 overflow-hidden  group hover:z-20 shadow-md ring-2 ring-zinc-800 shadow-zinc-900 relative first:origin-left last:origin-right cursor-pointer`}
             whileHover={{
                 scale: 1.35,
                 transition: {
@@ -64,7 +64,7 @@ const Card = ({data}: { data: Movie }) => {
             <AnimatePresence>
                 {isHovering && (
                     <motion.div
-                        className="w-full h-[40px] absolute top-0 left-0 px-4 py-2 flex justify-between items-center"
+                        className="w-full h-[40px] absolute top-0 left-0 px-4 py-2 flex justify-between items-center cursor-pointer"
                         initial={{ y: -30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -30, opacity: 0 }}
