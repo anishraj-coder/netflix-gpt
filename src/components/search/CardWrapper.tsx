@@ -1,8 +1,8 @@
 import {nanoid} from "nanoid";
 import {motion} from "motion/react";
-import {IMAGE_CDN} from "../../utils/constant.ts";
 import type {Movie} from "../../api/apiFunctions.ts";
 import {useEffect, useRef} from "react";
+import SearchCard from "./SearchCard.tsx";
 
 const CardWrapper=({data,title,i}:{data:Movie[][],title:string,i:number})=>{
     const ref = useRef<HTMLDivElement>(null);
@@ -35,13 +35,7 @@ const CardWrapper=({data,title,i}:{data:Movie[][],title:string,i:number})=>{
             <h1 className={`text-2xl font-light font-[poppins] text-white`}>{title}</h1>
             <div ref={ref} className={`card-Wrapper flex gap-4 overflow-x-auto   py-4 px-1`}>
                 {data[i].map(mov=>(
-                    <motion.div key={nanoid()} className={`h-48 w-36 ring-2 ring-zinc-600 shrink-0 relative rounded-sm overflow-hidden first:origin-left last:origin-right`} whileHover={{scale:1.1}}>
-                        <h1 className={`text-sm text-white font-white font-[poppins] font-medium absolute bottom-[8px] left-[5px] z-10`}>{mov.title}</h1>
-                        <img className={`w-full h-full object-center object-cover absolute inset-0`} src={IMAGE_CDN+mov.poster_path} alt=""/>
-                        <span className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent z-5`} />
-                        <span className={`absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/60 to-transparent z-5`} />
-
-                    </motion.div>
+                    <SearchCard key={mov.id} mov={mov}/>
                 ))}
             </div>
         </motion.div>

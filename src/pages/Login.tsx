@@ -2,6 +2,7 @@ import {useState} from "react";
 import { motion,AnimatePresence } from "motion/react";
 import { type SubmitHandler, useForm} from "react-hook-form";
 import {formSubmit} from "../store/formSubmit.ts";
+import {useNavigate} from "react-router-dom";
 export type formSchema={
     name:string,
     email:string,
@@ -10,6 +11,7 @@ export type formSchema={
 }
 const Login = () => {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
+    const navigate=useNavigate();
     const {register,handleSubmit,trigger,watch,setError,formState:{isSubmitting,errors,}}=useForm<formSchema>({
         defaultValues:{
             name:'',
@@ -21,7 +23,10 @@ const Login = () => {
     })
     const onSubmit:SubmitHandler<formSchema>= async (data:formSchema)=>{
         try{
-            await formSubmit(data,isSignUp);
+            const user= await formSubmit(data,isSignUp);
+            if(user){
+                navigate('/browse', { replace: true });
+            }
         }catch (error){
             let message="Something went wrong";
             if(error instanceof Error){

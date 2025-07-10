@@ -3,13 +3,18 @@ import {IMAGE_CDN} from "../utils/constant.ts";
 import {AnimatePresence, motion} from "motion/react";
 import {useHoverIntent} from "react-use-hoverintent";
 import { FaStar } from "react-icons/fa6";
+import {useNavigate} from "react-router-dom";
 
 
 
 const Card = ({data}: { data: Movie }) => {
     const [isHovering,ref]=useHoverIntent<HTMLDivElement>({timeout:200});
+    const navigate=useNavigate();
+    const handleClick=()=>{
+        navigate(`/movie/${data.id}`);
+    };
     return (
-        <motion.div key={data.id} ref={ref}
+        <motion.div key={data.id} ref={ref} onClick={handleClick}
             className={`
                 h-44 w-72 bg-black rounded-sm shrink-0 overflow-hidden  group hover:z-20 shadow-md ring-2 ring-zinc-800 shadow-zinc-900 relative first:origin-left last:origin-right`}
             whileHover={{

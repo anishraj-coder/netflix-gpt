@@ -31,6 +31,35 @@ export interface Movie {
     vote_average: number;
     vote_count: number;
 }
+export interface MovieDetails extends Movie {
+    genres: Array<{ id: number; name: string }>;
+    runtime: number;
+    tagline: string;
+    budget: number;
+    revenue: number;
+    production_companies: Array<{
+        id: number;
+        name: string;
+        logo_path: string | null;
+    }>;
+}
+export interface MovieCredits {
+    id: number;
+    cast: Array<{
+        id: number;
+        name: string;
+        character: string;
+        profile_path: string | null;
+        order: number;
+    }>;
+    crew: Array<{
+        id: number;
+        name: string;
+        job: string;
+        department: string;
+        profile_path: string | null;
+    }>;
+}
 export const queryClient=new QueryClient({});
 export const axiosApi=   axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -53,9 +82,27 @@ export const fetchMovieVideos = async (movieId: number) => {
 };
 export const fetchNowPlaying= async()=>{
     const res=await axiosApi.get<Movie[]>(`movie/now_playing`);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     return res.data.results;
 }
 export const fetchPopularMovies=async()=>{
     const res=await axiosApi.get<Movie[]>(`movie/popular`);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     return res.data.results;
 }
+export const fetchMovieDetails = async (movieId: number): Promise<MovieDetails> => {
+    const response = await axiosApi.get(`/movie/${movieId}`);
+    return response.data;
+};
+
+export const fetchMovieCredits = async (movieId: number): Promise<MovieCredits> => {
+    const response = await axiosApi.get(`/movie/${movieId}/credits`);
+    return response.data;
+};
+
+export const fetchSimilarMovies = async (movieId: number): Promise<Movie[]> => {
+    const response = await axiosApi.get(`/movie/${movieId}/similar`);
+    return response.data.results;
+};

@@ -4,12 +4,14 @@ import Browse from "../pages/Browse.tsx";
 import Body from "../pages/Body.tsx";
 import ErrorPage from "../pages/ErrorPage.tsx";
 import GPTSearch from "../pages/GPTSearch.tsx";
+import MovieDetails from "../pages/MovieDetails.tsx";
 
 export const AppRoute=createBrowserRouter([{path:'/',element:<Body/>,
     errorElement:<ErrorPage/>,
     children:[
         {path:'/login',element:<Login/>},
         {path:'/browse',element:<Browse/>},
-        {path:'/search',element:<GPTSearch/>}
+        {path:'/search',element:<GPTSearch/>},
+        {path:'/movie/:movieId',element:<MovieDetails/>}
     ]
 },{path:'/error',element:<ErrorPage/>}]);

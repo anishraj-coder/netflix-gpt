@@ -24,23 +24,15 @@ const Hero = () => {
                 <div className={`w-full h-full absolute overflow-hidden`}>
                     <span
                         className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-black to-transparent z-10"></span>
-                    {!isVideoLoading ? <iframe className={`w-full h-full aspect-auto object-cover pointer-events-none`}
-                                               src={
-                                                   "https://www.youtube.com/embed/" +
-                                                   trailer?.key +
-                                                   "?autoplay=1" +
-                                                   "&mute=1" +
-                                                   "&controls=0" +
-                                                   "&modestbranding=1" +
-                                                   "&rel=0" +
-                                                   "&loop=1" +
-                                                   "&playlist=" +
-                                                   trailer?.key
-                                               }
-                                               title="YouTube video player" frameBorder="0"
-                                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                               referrerPolicy="strict-origin-when-cross-origin"
-                                               allowFullScreen></iframe> : <img
+                    {!isVideoLoading ? <iframe
+                        className={`w-full h-full aspect-auto object-cover pointer-events-none`}
+                        src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${trailer?.key}&showinfo=0&iv_load_policy=3&disablekb=1&fs=0`}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                    /> : <img
                         src={`https://image.tmdb.org/t/p/original/${hero.backdrop_path}`}
                         className={`w-full h-full object-cover object-center `} alt=""/>}
                     <motion.div initial={{translateX: -400, opacity: 0.2}} animate={{translateX: 0, opacity: 1}}

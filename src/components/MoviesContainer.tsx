@@ -7,9 +7,9 @@ export const Loading=()=>{
         <h1 className={`text-6xl font-[poppins] font-semibold text-white`}>Loading....</h1>
     </div>);
 };
-export const Error=({error}:{error:Error})=>{
+export const Error=({error}:{error:boolean})=>{
     return (<div className={`h-[40vh] flex items-center justify-center`}>
-        <h1 className={`text-6xl font-[poppins] font-semibold text-white`}>{error.message}</h1>
+        <h1 className={`text-6xl font-[poppins] font-semibold text-white`}>{error&&`Error Occurred`}</h1>
     </div>);
 }
 const MoviesContainer = () => {
