@@ -11,7 +11,16 @@
 📂 **Codebase**: [github.com/anishraj-coder/netflix-gpt](https://github.com/anishraj-coder/netflix-gpt)
 
 ---
+### ⚠️ TMDB API Not Working in India?
 
+Some Indian ISPs (like Jio, Airtel, Vi) block TMDB's API, causing movies not to load.
+
+**Fix:**  
+- Use a free VPN (e.g. [ProtonVPN](https://protonvpn.com/free-vpn))  
+- Or change your DNS to `dns.adguard.com` (`94.140.14.14`)
+
+Once connected, the app will work as expected! ✅
+---
 ## ⚠️ API Key Notice
 
 > 🛠 **Important!**  
