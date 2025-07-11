@@ -27,14 +27,14 @@ const Header=()=>{
 
     const handleSearch=()=>{
         if(isSearchPage) {
-            navigate('/browse');
+            navigate(-1);
         } else {
             navigate('/search');
         }
     }
 
     return (
-        <div className={`h-20 lg:h-28 bg-gradient-to-b absolute top-0 left-0 w-full px-10 py-2 z-20 from-black from-15% flex justify-between items-center `}>
+        <div className={`h-20 lg:h-28 bg-gradient-to-b absolute top-0 left-0 w-full px-5 md:px-10 py-2 z-20 from-black from-15% flex justify-between items-center `}>
             <motion.img initial={{translateY:-100,opacity:0}} animate={{opacity:1,translateY:0}} transition={{duration:0.6}} src={logo} className={`h-[40%] lg:h-[50%]`} alt=""/>
             <motion.button initial={{y:-100}} animate={{y:0}} transition={{duration:0.8, delay:0.1}} onClick={handleSearch}
                            whileTap={{scale:105}}

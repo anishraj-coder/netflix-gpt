@@ -40,7 +40,7 @@ const MovieDetails = () => {
     if (!movie) return null;
 
     return (
-        <div className="min-h-screen bg-black text-white pb-10">
+        <div className={`min-h-screen bg-black text-white pb-10`}>
             <Header />
 
             <MovieHero backdropPath={movie.backdrop_path} title={movie.title} />
@@ -49,18 +49,18 @@ const MovieDetails = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative -mt-40 z-10 px-10 pb-10"
+                className={`relative -mt-40 z-10 px-10 pb-10`}
             >
-                <div className="flex flex-col md:flex-row gap-8">
+                <div className={`flex flex-col md:flex-row gap-8`}>
                     <MoviePoster posterPath={movie.poster_path as string} title={movie.title} />
 
-                    <div className="flex-1">
-                        <h1 className="text-4xl md:text-6xl font-[poppins] font-bold mb-4">
+                    <div className={`flex-1`}>
+                        <h1 className={`text-4xl md:text-6xl font-[poppins] font-bold mb-4`}>
                             {movie.title}
                         </h1>
 
                         {movie.tagline && (
-                            <p className="text-xl text-gray-400 italic mb-4">"{movie.tagline}"</p>
+                            <p className={`text-xl text-gray-400 italic mb-4`}>"{movie.tagline}"</p>
                         )}
 
                         <MovieMetadata
@@ -72,7 +72,7 @@ const MovieDetails = () => {
 
                         <GenreTags genres={movie.genres} />
 
-                        <p className="text-lg leading-relaxed mb-6 max-w-3xl font-[poppins]">
+                        <p className={`text-lg leading-relaxed mb-6 max-w-3xl font-[poppins]`}>
                             {movie.overview}
                         </p>
 
@@ -88,8 +88,16 @@ const MovieDetails = () => {
 
                 <CastSection cast={credits?.cast || []} />
 
+
+            </motion.div>
+            <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className={`relative -mt-10  z-10  pb-10`}
+            >
                 {similarMovies && similarMovies.length > 0 && (
-                    <div className="mt-12">
+                    <div className={`px-3`} >
                         <CardsWrapper data={similarMovies} title="Similar Movies" />
                     </div>
                 )}

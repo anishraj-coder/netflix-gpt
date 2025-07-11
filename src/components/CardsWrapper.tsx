@@ -22,7 +22,7 @@ const CardsWrapper = ({data:datas,title}:{data:Movie[]|undefined,title:string}) 
     }, []);
 
     return (
-        <div  className={`h-[27vh] md:h-[40vh] flex flex-col justify-center px-6 z-10 relative `}>
+        <div  className={`h-[32vh] md:h-[40vh] flex flex-col justify-center px-6 z-10 relative `}>
             <h1 className={`text-2xl md:text-5xl font-[poppins] font-medium text-white`}>{title}</h1>
             <div ref={ref} className={`h-fit w-full overflow-x-auto overflow-y-visible relative py-[1rem] md:py-[3rem] flex gap-5`}>
                 {datas?.map(data=><Card key={data.id} data={data}/>)}
